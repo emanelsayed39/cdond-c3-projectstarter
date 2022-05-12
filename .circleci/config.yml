@@ -7,10 +7,14 @@ jobs:
     steps:
       - checkout
       - run:
-        command: cd frontend 
+        name: Build front-end
+        command: |
+          cd frontend
+          npm install
+          npm run build
+          exit 1
       
  
-    
 
 
 workflows:
