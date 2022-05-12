@@ -55,6 +55,31 @@ jobs:
             cd backend
             npm install
             npm run test
+  scan-frontend:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run:
+          name: front-end scan
+          command: |
+              cd frontend
+              npm install
+              # npm install oauth-sign@^0.9.0
+              npm audit --audit-level=critical
+
+  scan-backend:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run:
+          name: back-end scan
+          command: |
+              cd backend
+              npm install
+              # npm install oauth-sign@^0.9.0
+              npm audit --audit-level=critical
 
 workflows:
   default:
