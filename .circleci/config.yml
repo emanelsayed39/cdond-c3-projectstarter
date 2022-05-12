@@ -9,7 +9,7 @@ jobs:
       - restore_cache:
           keys: [frontend-build]
       - run: cd frontend 
-      - run: npm -i 
+      - run: npm install
  
     
 
