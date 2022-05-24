@@ -2,8 +2,7 @@ version: 2.1
 commands:
   destroy-environment:
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
-    parameters:
-      # Add parameter here   
+ 
     steps:
       - run:
           name: Destroy environments
@@ -95,7 +94,7 @@ jobs:
               npm audit --audit-level=critical
   deploy-infrastructure:
       docker:
-         - image: amazon/aws-cli
+        - image: amazon/aws-cli
       steps:
         - checkout
         - run:
