@@ -133,6 +133,11 @@ jobs:
         - add_ssh_keys:
             fingerprints: ["04:81:dd:a2:9c:fc:39:af:36:3d:ac:17:14:14:9f:5a"]
         # attach workspace
+        - persist_to_workspace:
+            root: ~/
+            paths:
+              - project/.circleci/ansible/inventory.txt
+              
         - run:
             name: Install Ansible
             command: |
