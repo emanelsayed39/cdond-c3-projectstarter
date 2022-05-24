@@ -180,7 +180,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            # your code here
+            npm install
       - run:
           name: Get backend url
           command: |
