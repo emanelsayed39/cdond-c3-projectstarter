@@ -1,14 +1,14 @@
 version: 2.1
 commands:
-  destroy-environment:
-    description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
+  #destroy-environment:
+  #  description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
  
-    steps:
-      - run:
-          name: Destroy environments
-          when: on_fail
-          command: |
-            aws cloudformation delete-stack --stack-name prod-${CIRCLE_WORKFLOW_ID:0:7} 
+  #  steps:
+  #    - run:
+  #        name: Destroy environments
+  #       when: on_fail
+  #       command: |
+  #          aws cloudformation delete-stack --stack-name prod-${CIRCLE_WORKFLOW_ID:0:7} 
 jobs:
   build-frontend:
     docker:
@@ -216,9 +216,9 @@ workflows:
           requires: [build-frontend]
       - scan-backend:
           requires: [build-backend]
-      #- deploy-infrastructure
-      - configure-infrastructure
-      #    requires: [deploy-infrastructure]
+      - deploy-infrastructure
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
       - run-migrations:
            requires: [configure-infrastructure]
       - deploy-frontend:
