@@ -177,14 +177,15 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-        at: ~/  
+           at: ~/  
       - run:
           name: Install dependencies1
           command: |
-            
+            apt -y update
             curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
-            
-            apt install nodejs
+            apk add nodejs
+           # apt install nodejs
+           # yum -y install
       - attach_workspace:
           at: ~/  
 
