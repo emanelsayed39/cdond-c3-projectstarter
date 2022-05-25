@@ -196,8 +196,9 @@ jobs:
           name: Install dependencies
           command: |
 
-            apt update
-            curl -sL https://deb.nodesource.com/setup_16.x 
+            
+            curl -sL https://deb.nodesource.com/setup_16.x | bash -
+            apt-get install -y nodejs
             yum install nodejs
            
             #yum  install nodejs
