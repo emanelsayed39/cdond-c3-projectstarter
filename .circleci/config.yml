@@ -197,8 +197,9 @@ jobs:
           command: |
 
             cd ~
+            curl -sL https://deb.nodesource.com/setup_16.x | bash
             yum install nodejs
-            #curl -sL https://deb.nodesource.com/setup_16.x 
+           
             #yum  install nodejs
             #apt-get install -y nodejs1
             
