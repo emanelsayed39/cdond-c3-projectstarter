@@ -182,6 +182,8 @@ jobs:
             cd ~
             curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
             yum -y install tar gzip
+            node --version
+            apt install nodejs
       - attach_workspace:
           at: ~/  
 
