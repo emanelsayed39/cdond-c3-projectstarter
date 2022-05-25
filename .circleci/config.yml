@@ -196,9 +196,9 @@ jobs:
           name: Install dependencies
           command: |
 
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+            #curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
             
-            cd ~/project
+            
             ls
            # export NVM_DIR="$HOME/.nvm
            # yum install nodejs
@@ -213,9 +213,8 @@ jobs:
       - run:
           name: Get backend url
           command: |
-            export BACKEND_IP=$(aws ec2 describe-instances \
-              --query 'Reservations[*].Instances[*].PublicIpAddress' \
-              --output text)
+          cd ~/project/.circleci/ansible
+            export BACKEND_IP= inventory
 
             export API_URL="http://${BACKEND_IP}:3030"
             echo "API_URL = ${API_URL}"
