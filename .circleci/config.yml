@@ -181,8 +181,9 @@ jobs:
           command: |
             yum install -y nodejs
       
-      - persist_to_workspace:
-          root: ~/           
+      - attach_workspace:
+          at: ~/  
+
       - run:
           name: Get backend url
           command: |
