@@ -102,7 +102,7 @@ jobs:
         - persist_to_workspace:
               root: ~/
               paths:
-                - project/.circleci/ansible/inventory.txt
+                - project/.circleci/ansible/inventory
        # - run:
        #     name: Ensure back-end infrastructure exists
        #     command: |
@@ -129,6 +129,7 @@ jobs:
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --output text >> inventory
               cat inventory
+
         - persist_to_workspace:
             root: ~/
             paths:
