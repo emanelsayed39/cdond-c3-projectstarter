@@ -181,7 +181,8 @@ jobs:
       - run:
           name: Install dependencies1
           command: |
-         
+
+            yum -y install tar gzip
             curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
             yum -y install
            # apt install nodejs
