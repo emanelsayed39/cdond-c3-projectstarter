@@ -187,9 +187,9 @@ jobs:
       - image: sleavely/node-awscli:14.x
     steps:
       - checkout
-      - run:
-            command: |
-              yum -y install tar gzip
+      #- run:
+      #      command: |
+       #       yum -y install tar gzip
       - attach_workspace:
           at: ~/
       - run:
