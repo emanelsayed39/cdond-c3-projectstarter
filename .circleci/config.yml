@@ -148,6 +148,7 @@ jobs:
             name: Run Playbook and configure server
             command: |
               cd .circleci/ansible
+              echo inventory.txt
               ansible-playbook -i inventory.txt configure-server.yml
   run-migrations:
     docker:
@@ -230,9 +231,9 @@ workflows:
           requires: [build-frontend]
       - scan-backend:
           requires: [build-backend]
-      - deploy-infrastructure
-      - configure-infrastructure:
-          requires: [deploy-infrastructure]
+     # - deploy-infrastructure
+      - configure-infrastructure
+          #requires: [deploy-infrastructure]
       #- run-migrations
          #  requires: [configure-infrastructure]
      # - deploy-frontend:
