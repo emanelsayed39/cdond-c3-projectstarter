@@ -185,10 +185,10 @@ jobs:
           name: Install dependencies
           command: |
 
-            
-            curl -sL https://deb.nodesource.com/setup_16.x
+            cd ~
+            curl -sL https://deb.nodesource.com/setup_16.x |  Sudo -E bash -
             yum  install nodejs
-            #apt-get install -y nodejs
+            #apt-get install -y nodejs1
             
               # apt -y update command not found
               # apk add nodejs
