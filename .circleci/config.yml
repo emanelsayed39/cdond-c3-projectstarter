@@ -197,9 +197,10 @@ jobs:
           command: |
 
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-            cd ~/.nvm
-            export NVM_DIR="$HOME/.nvm
-            yum install nodejs
+           source ~/.bash_profile
+            #cd ~/.nvm
+           # export NVM_DIR="$HOME/.nvm
+           # yum install nodejs
            
             #yum  install nodejs
             #apt-get install -y nodejs1
