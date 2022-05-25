@@ -179,6 +179,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+            yum install epel-release
             yum install -y nodejs
       
       - attach_workspace:
