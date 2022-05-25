@@ -179,8 +179,8 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yum install epel-release
-            yum install nodejs
+            cd ~
+            curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
       
       - attach_workspace:
           at: ~/  
