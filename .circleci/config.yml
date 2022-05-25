@@ -100,9 +100,9 @@ jobs:
             command: |
               yum -y install tar gzip
         - persist_to_workspace:
-          root: ~/
-          paths:
-            - project/.circleci/ansible/inventory.txt
+              root: ~/
+              paths:
+                - project/.circleci/ansible/inventory.txt
        # - run:
        #     name: Ensure back-end infrastructure exists
        #     command: |
