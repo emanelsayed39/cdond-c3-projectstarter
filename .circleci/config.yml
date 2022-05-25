@@ -182,10 +182,11 @@ jobs:
           command: |
          
             curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
-            apk add nodejs
+           
            # apt install nodejs
-           # yum -y install
+            yum -y install
               # apt -y update command not found
+              # apk add nodejs
       - attach_workspace:
           at: ~/  
 
