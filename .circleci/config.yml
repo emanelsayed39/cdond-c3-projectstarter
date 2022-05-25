@@ -197,7 +197,7 @@ jobs:
           command: |
 
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh
-            apt-get install -y nodejs
+            node -v
             yum install nodejs
            
             #yum  install nodejs
