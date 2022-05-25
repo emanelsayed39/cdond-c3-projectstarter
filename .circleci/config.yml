@@ -5,7 +5,7 @@ commands:
  
     steps:
       - run:
-          name: Destroy environments1
+          name: Destroy environments
           when: on_fail
           command: |
             aws cloudformation delete-stack --stack-name prod-${CIRCLE_WORKFLOW_ID:0:7} 
@@ -173,13 +173,13 @@ jobs:
      # Here's where you will add some code to rollback on failure      
   deploy-frontend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: amazon/aws-cli
     steps:
       - checkout
       - run:
           name: Install dependencies
           command: |
-            # your code here
+              sudo apt install nodejs
       - run:
           name: Get backend url
           command: |
