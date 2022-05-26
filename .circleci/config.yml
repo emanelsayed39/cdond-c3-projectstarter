@@ -276,7 +276,7 @@ jobs:
 
            
             echo "API_URL = ${API_URL}"
-          
+      - run: apk add --update curl    
       - run:
           name: Backend smoke test.
           command: |
