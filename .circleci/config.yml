@@ -202,15 +202,7 @@ jobs:
             
             ls
            # export NVM_DIR="$HOME/.nvm
-           # yum install nodejs
-           
-            #yum  install nodejs
-            #apt-get install -y nodejs1
-            
-              # apt -y update command not found
-              # apk add nodejs
-        
-
+          
       - run:
           name: Get backend url
           command: |
@@ -239,7 +231,18 @@ jobs:
             cd ..
             # Zip the directory
             tar -C backend -czvf artifact.tar.gz .
-      
+      - run:
+          name: Frontend smoke test.
+          command: |
+            URL="http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website-us-east-1.amazonaws.com/#/employees"            
+            echo ${URL} 
+            if curl -s ${URL} | grep "Welcome"
+            then
+                # Change this to 0 after the job fails
+              return 0
+            else
+              return 1
+            fi
       # Here's where you will add some code to rollback on failure      
   deploy-backend:
     docker:
@@ -265,7 +268,31 @@ jobs:
             cat inventory
             ansible-playbook -i inventory deploy-backend.yml
       # Here's where you will add some code to rollback on failure  
-   
+      - run:
+          name: Get backend url
+          command: |
+            export BACKEND_IP=$(aws ec2 describe-instances \
+              --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
+
+           
+            echo "API_URL = ${API_URL}"
+          
+      - run:
+          name: Backend smoke test.
+          command: |
+            export API_URL="http://${BACKEND_IP}:3030"
+            echo "${API_URL}"
+            if curl "${API_URL}/api/status" | grep "ok"
+            then
+                return 0
+            else
+                return 1
+            fi
+
+  
+  
+      # Here's where you will add some code to rollback on failure  
+ 
     
        
 
