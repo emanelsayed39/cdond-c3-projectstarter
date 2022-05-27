@@ -132,7 +132,7 @@ jobs:
         # attach workspace
         - persist_to_workspace:
             paths:
-              project/.circleci/ansible/inventory
+              -project/.circleci/ansible/inventory
               
         - run:
             name: Install Ansible
