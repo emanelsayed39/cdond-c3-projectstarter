@@ -290,11 +290,11 @@ workflows:
           requires: [build-frontend]
       - scan-backend:
           requires: [build-backend]
-      #- deploy-infrastructure
-      # - configure-infrastructure
-      #   requires: [deploy-infrastructure]
-      #- run-migrations:
-      #    requires: [configure-infrastructure]
+      - deploy-infrastructure
+      - configure-infrastructure
+          requires: [deploy-infrastructure]
+      - run-migrations:
+          requires: [configure-infrastructure]
       - deploy-frontend
-      #    requires: [run-migrations]
+          requires: [run-migrations]
       - deploy-backend
