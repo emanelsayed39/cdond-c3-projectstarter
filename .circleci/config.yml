@@ -122,8 +122,7 @@ jobs:
         - persist_to_workspace:
             root: ~/
             paths:
-              -project/.circleci/ansible/inventory
-
+              - project/.circleci/ansible/inventory
         - destroy-environment
         
 
@@ -138,7 +137,7 @@ jobs:
         - persist_to_workspace:
             root: ~/
             paths:
-              -project/.circleci/ansible/inventory
+              - project/.circleci/ansible/inventory
               
         - run:
             name: Install Ansible
@@ -291,9 +290,9 @@ workflows:
           requires: [build-frontend]
       - scan-backend:
           requires: [build-backend]
-      - deploy-infrastructure
-      - configure-infrastructure:
-          requires: [deploy-infrastructure]
+     # - deploy-infrastructure
+      - configure-infrastructure
+     #     requires: [deploy-infrastructure]
       - run-migrations:
           requires: [configure-infrastructure]
       - deploy-frontend:
