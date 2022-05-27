@@ -218,9 +218,9 @@ jobs:
             echo ${URL} 
             if curl -s  ${URL} 
             then
-              return 1
+              exit 1
             else
-              return 1
+              exit 1
             fi
       # Here's where you will add some code to rollback on failure      
   deploy-backend:
