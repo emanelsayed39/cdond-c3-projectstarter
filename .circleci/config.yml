@@ -118,11 +118,7 @@ jobs:
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --output text >> inventory
               cat inventory
-
-        - persist_to_workspace:
-            root: ~/
-            paths:
-              - project/.circleci/ansible/inventory
+              
         - destroy-environment
         
 
@@ -297,4 +293,5 @@ workflows:
           requires: [configure-infrastructure]
       - deploy-frontend:
           requires: [run-migrations]
-      - deploy-backend
+      - deploy-backend:
+          requires: [run-migrations]
