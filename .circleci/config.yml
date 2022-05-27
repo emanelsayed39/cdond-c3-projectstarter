@@ -219,7 +219,7 @@ jobs:
             if curl -s ${URL} | grep "Welcome"
             then
                 # Change this to 0 after the job fails
-              return 1
+              return 0
             else
               return 1
             fi
@@ -291,10 +291,10 @@ workflows:
       - scan-backend:
           requires: [build-backend]
      # - deploy-infrastructure
-      - configure-infrastructure
+     # - configure-infrastructure
      #     requires: [deploy-infrastructure]
-      - run-migrations:
-          requires: [configure-infrastructure]
+      #- run-migrations:
+      #    requires: [configure-infrastructure]
       - deploy-frontend:
           requires: [run-migrations]
       - deploy-backend:
