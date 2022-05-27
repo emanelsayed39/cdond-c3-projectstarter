@@ -112,7 +112,6 @@ jobs:
         - run:
             name: Add back-end ip to ansible inventory
             command: |
-      
               cd .circleci/ansible
               cat inventory
               aws ec2 describe-instances \
@@ -150,6 +149,7 @@ jobs:
               cd .circleci/ansible
               cat inventory
               ansible-playbook -i inventory configure-server.yml
+              
   run-migrations:
     docker:
       - image: cimg/node:18.2.0
@@ -180,9 +180,7 @@ jobs:
       - image: sleavely/node-awscli:14.x
     steps:
       - checkout
-      #- run:
-      #      command: |
-       #       yum -y install tar gzip
+      
       - attach_workspace:
           at: ~/
       - run:
@@ -192,17 +190,7 @@ jobs:
               --template-file .circleci/files/frontend.yml \
               --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"  \
-              --tags project=udapeople --region us-east-1
-      - run:
-          name: Install dependencies
-          command: |
-
-            #curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-            
-            
-            ls
-           # export NVM_DIR="$HOME/.nvm
-          
+              --tags project=udapeople --region us-east-1    
       - run:
           name: Get backend url
           command: |
@@ -218,19 +206,11 @@ jobs:
           name: Deploy frontend objects
           command: |
             cd frontend
-            npm install
+            npm install 
             npm run build
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
-      - run:
-          name: Build backend
-          command: |
-            cd backend
-            npm i
-            npm run build
-            cd ..
-            # Zip the directory
-            tar -C backend -czvf artifact.tar.gz .
+
       - run:
           name: Frontend smoke test.
           command: |
@@ -239,7 +219,7 @@ jobs:
             if curl -s ${URL} | grep "Welcome"
             then
                 # Change this to 0 after the job fails
-              return 0
+              return 1
             else
               return 1
             fi
@@ -264,7 +244,7 @@ jobs:
           command: |
            
             cd .circleci/ansible
-            echo "Contents  of the inventory.txt file is -------"
+            echo "Contents  of the inventory file is -------"
             cat inventory
             ansible-playbook -i inventory deploy-backend.yml
       # Here's where you will add some code to rollback on failure  
