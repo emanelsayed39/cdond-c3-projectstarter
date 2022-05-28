@@ -218,7 +218,7 @@ jobs:
             echo ${URL} 
             if curl -s  --head ${URL} 
             then
-              exit 1
+              exit 0
             else
               exit 1
             fi
