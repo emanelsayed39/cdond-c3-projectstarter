@@ -1,4 +1,4 @@
 - name: copy back end to EC2 instance
   copy:
-    src: ~/backend/dist
+    src: dist
     dest: $HOME
