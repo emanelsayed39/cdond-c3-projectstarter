@@ -248,8 +248,8 @@ jobs:
            #npm run build
             #aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
 
-            tar -C backend -czvf artifact1.tar.gz .
-            ls 
+            tar -C backend -czvf artifact1.tar.gz circleci/ansible/roles/deploy/tasks/files/
+            ls circleci/ansible/roles/deploy/tasks/files
             cd .circleci/ansible
             echo "Contents  of the inventory file is -------"
             cat inventory
