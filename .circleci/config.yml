@@ -241,9 +241,9 @@ jobs:
       - run:
           name: Deploy backend
           command: |
-            cd backend
-            npm install 
-            npm run build
+          #  cd backend
+          #  npm install 
+           # npm run build
             #aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
 
             tar -C backend -czvf artifact.tar.gz .
@@ -260,7 +260,9 @@ jobs:
 
            
             echo "API_URL = ${API_URL}"
-      - run: apk add --update curl    
+      - run: 
+            apk add --update curl 
+            apk add --update npm   
       - run:
           name: Backend smoke test.
           command: |
