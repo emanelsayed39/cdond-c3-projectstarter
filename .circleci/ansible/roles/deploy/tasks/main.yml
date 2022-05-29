@@ -5,6 +5,6 @@
 
 - name: Extract artifact.tar.gz
   ansible.builtin.unarchive:
-    src: $HOME\artifact.tar.gz
+    src: artifact.tar.gz
     dest: $HOME
-    remote_src: true
+    remote_src: yes
