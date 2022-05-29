@@ -2,8 +2,9 @@
   copy:
     src: .
     dest: $HOME
+
 - name: Extract artifact.tar.gz
   ansible.builtin.unarchive:
-    src: "artifact.tar.gz"
+    src: $HOME\artifact.tar.gz
     dest: $HOME
     remote_src: true
