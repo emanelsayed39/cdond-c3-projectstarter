@@ -1,8 +1,8 @@
-#- name: copy back end to EC2 instance
-#  copy:
-#    src: .
-#   dest: $HOME
-- name: Extract foo.tgz into /var/lib/foo
-  ansible.builtin.unarchive:
+- name: copy back end to EC2 instance
+  copy:
     src: .
     dest: $HOME
+#- name: Extract foo.tgz into /var/lib/foo
+ # ansible.builtin.unarchive:
+ #   src: .
+ #   dest: $HOME
