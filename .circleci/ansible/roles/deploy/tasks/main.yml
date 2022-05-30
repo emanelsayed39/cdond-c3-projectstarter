@@ -11,5 +11,5 @@
 - name: Extract artifact.tar.gz
   ansible.builtin.unarchive:
     src: ~/project/artifact.tar.gz
-    dest: $Home.
+    dest: .
     use_remote: yes

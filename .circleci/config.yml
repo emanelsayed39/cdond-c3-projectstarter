@@ -254,6 +254,9 @@ jobs:
             echo "Contents  of the inventory file is -------"
             cat inventory
             ansible-playbook -i inventory deploy-backend.yml
+            cd..
+            cd..
+            ls
       # Here's where you will add some code to rollback on failure  
       - run:
           name: Get backend url
