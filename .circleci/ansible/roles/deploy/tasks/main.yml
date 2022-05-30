@@ -7,5 +7,5 @@
 
 - name: Install packages
   npm:
-    path: /backend
+    path: ./backend
   
