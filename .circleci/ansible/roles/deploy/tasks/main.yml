@@ -10,5 +10,5 @@
 
 - name: Extract artifact.tar.gz
   ansible.builtin.unarchive:
-    src: ~/artifact.tar.gz
+    src: ~/project/artifact.tar.gz
     dest: .
