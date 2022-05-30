@@ -9,8 +9,7 @@
   npm:
     path: ./backend
 
-- name: Start App
-  command : forever start /backend
+
 
 - name: "start app"
   become: true
