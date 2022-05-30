@@ -1,19 +1,11 @@
 
 
-
-#- name: copy back end to EC2 instance
-#  become: true
- # copy:
- #   src: ~/artifact.tar.gz
- #   dest: $HOME/artifact.tar.gz
-   
-
 - name: Extract artifact.tar.gz
   ansible.builtin.unarchive:
     src: ~/project/artifact.tar.gz
     dest: .
 
 - name: Install packages
-  community.general.npm:
-    path: .
+  npm:
+    path: /backend
   
