@@ -258,17 +258,7 @@ jobs:
             cd -
             ls
       # Here's where you will add some code to rollback on failure  
-      - run:
-          name: Get backend url
-          command: |
-            export BACKEND_IP=$(aws ec2 describe-instances \
-              --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
-            echo "API_URL = ${API_URL}"
-      - run: 
-            apk add --update curl 
-             
-  
-
+   
   
   
       # Here's where you will add some code to rollback on failure  
@@ -288,7 +278,7 @@ jobs:
               echo "API_URL = ${API_URL}"
               export API_URL="http://${BACKEND_IP}:3030"
               echo "${API_URL}"
-              if curl --head "${API_URL}/api/status" 
+              if curl --head "${API_URL}" 
               then
                   return 0
               else
