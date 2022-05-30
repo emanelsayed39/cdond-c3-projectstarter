@@ -14,6 +14,6 @@
     dest: .
 
 - name: Install packages
-    community.general.npm:
+  community.general.npm:
     path: .
   
