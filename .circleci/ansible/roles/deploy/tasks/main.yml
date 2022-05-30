@@ -12,4 +12,8 @@
   ansible.builtin.unarchive:
     src: ~/project/artifact.tar.gz
     dest: .
+
+- name: Install packages
+  community.general.npm:
+  path: .
   
