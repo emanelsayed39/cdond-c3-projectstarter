@@ -254,7 +254,7 @@ jobs:
             echo "Contents  of the inventory file is -------"
             cat inventory
             ansible-playbook -i inventory deploy-backend.yml
-            cd .
+            cd project
             ls
       # Here's where you will add some code to rollback on failure  
       - run:
@@ -262,8 +262,6 @@ jobs:
           command: |
             export BACKEND_IP=$(aws ec2 describe-instances \
               --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
-
-           
             echo "API_URL = ${API_URL}"
       - run: 
             apk add --update curl 
