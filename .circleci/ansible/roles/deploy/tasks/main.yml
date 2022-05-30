@@ -8,4 +8,14 @@
 - name: Install packages
   npm:
     path: ./backend
-  
+
+- name: Start App
+  command : forever start /backend
+
+- name: "start app"
+  become: true
+  npm:
+    name: pm2
+    global: yes
+    production: yes
+    state: present
