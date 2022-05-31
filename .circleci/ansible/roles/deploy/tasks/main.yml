@@ -5,6 +5,7 @@
 
 - name: Extract artifact.tar.gz
   become: true
+  sudo: yes
   ansible.builtin.unarchive:
     src: ~/project/artifact.tar.gz
     dest: backend
