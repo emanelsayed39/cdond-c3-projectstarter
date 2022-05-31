@@ -278,7 +278,7 @@ jobs:
               echo "API_URL = ${API_URL}"
               export API_URL="http://${BACKEND_IP}:3030"
               echo "${API_URL}"
-              if curl --head "${API_URL}" 
+              if curl "${API_URL}/api/status" | grep "ok" 
               then
                   return 0
               else
@@ -307,6 +307,6 @@ workflows:
      #    requires: [configure-infrastructure]
      # - deploy-frontend:
        #   requires: [run-migrations]
-      - deploy-backend
+     # - deploy-backend
        #   requires: [run-migrations]
-     # - smoke-test-backend
+      - smoke-test-backend
