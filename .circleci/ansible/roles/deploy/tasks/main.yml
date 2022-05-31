@@ -1,7 +1,7 @@
 - name: create opt directory for prometheus
-      file:
-        path: /backend
-        state: directory
+  file:
+    path: /backend
+    state: directory
 
 - name: Extract artifact.tar.gz
   ansible.builtin.unarchive:
