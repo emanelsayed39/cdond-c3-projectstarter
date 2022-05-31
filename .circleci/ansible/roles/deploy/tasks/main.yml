@@ -5,16 +5,15 @@
 
 - name: Extract artifact.tar.gz
   become: true
-  sudo: yes
   ansible.builtin.unarchive:
     src: ~/project/artifact.tar.gz
-    dest: backend
+    dest: /tmp
     
 
 - name: Install packages
   become: true
   npm:
-    path: /backend
+    path: /tmp
     remote_src: yes
 
 
