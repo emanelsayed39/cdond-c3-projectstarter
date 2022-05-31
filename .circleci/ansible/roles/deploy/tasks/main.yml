@@ -14,9 +14,7 @@
   become: true
   npm:
     path: /tmp
-    remote_src: yes
-
-
+   
 
 - name: "start app"
   become: true
