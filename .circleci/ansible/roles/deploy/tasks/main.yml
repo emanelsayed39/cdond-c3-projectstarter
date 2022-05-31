@@ -3,6 +3,13 @@
   #  path: /backend
  #   state: 
 
+- name: Creates Directory
+  become: yes
+  file:
+    path: ~/backend
+    state: directory
+    mode: 0755
+
 - name: Extract artifact.tar.gz
   become: true
   ansible.builtin.unarchive:
