@@ -14,19 +14,26 @@
   become: true
   ansible.builtin.unarchive:
     src: ~/project/artifact.tar.gz
-    dest: /tmp
+    dest: ~/backend
     
 
-- name: Install packages
-  become: true
-  npm:
-    path: /tmp
+#- name: Install packages
+ # become: true
+ # npm:
+ #   path: ~/backend
    
 
-- name: "start app"
+name: Executing node
   become: true
-  npm:
-    name: pm2
-    global: yes
-    production: yes
-    state: present
+  become_method: sudo
+  become_user: root
+  shell: |
+    cd ~/backend
+    npm install
+    npm run build
+   # pm2 stop default
+    pm2 start npm --name "backend" -- run start --port 3030
+    pm2 status
+    #cd ~/backend
+    #pm2 start main.js --update-env
+    #pm2 status
