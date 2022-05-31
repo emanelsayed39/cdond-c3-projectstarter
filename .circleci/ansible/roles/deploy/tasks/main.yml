@@ -25,7 +25,6 @@
 
 name: Executing node
   become: true
-  become_method: sudo
   become_user: root
   shell: |
     cd ~/backend
