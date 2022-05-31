@@ -7,7 +7,7 @@
   ansible.builtin.unarchive:
     src: ~/project/artifact.tar.gz
     dest: /
-    remote_src: yes
+    
 
 - name: Install packages
   become: true
