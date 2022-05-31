@@ -4,9 +4,10 @@
  #   state: 
 
 - name: Extract artifact.tar.gz
+  become: true
   ansible.builtin.unarchive:
     src: ~/project/artifact.tar.gz
-    dest: /
+    dest: backend
     
 
 - name: Install packages
