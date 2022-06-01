@@ -36,7 +36,7 @@
   become_user: root
   shell: |
     pm2 stop default
-    pm2 start src/main.ts
+    pm2 start main.ts
    
 
 - name: start pm2 server
