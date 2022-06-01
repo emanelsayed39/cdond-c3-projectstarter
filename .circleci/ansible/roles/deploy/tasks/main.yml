@@ -2,6 +2,14 @@
  # file:
   #  path: /backend
  #   state: 
+- name: start server
+  become: true
+  become_user: root
+  shell: |
+    
+    pm2 stop default
+    pm2 start "mpm run start"
+    pm2 report
 
 - name: Creates Directory
   become: yes
@@ -23,20 +31,13 @@
  #   path: ~/backend
    
 
-#- name: Executing node
-#  become: true
+ #- name: Executing node
+ #  become: true
  # become_user: root
 #  shell: |
  #   cd /home/ubuntu/backend
 #    npm install
 
 
-- name: start server
-  become: true
-  become_user: root
-  shell: |
-    
-    pm2 stop default
-    pm2 start "mpm run start"
-    pm2 report
+
    
