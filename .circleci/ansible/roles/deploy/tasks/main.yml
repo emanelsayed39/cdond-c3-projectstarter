@@ -31,11 +31,16 @@
     npm install
 
 
-- name: start server
+- name: "start service"
   become: true
   become_user: root
   shell: |
     pm2 stop default
     pm2 start "mpm run start"
     pm2 report
+
+-name: "start pm2 server"
+ become: true
+ shell: |
+  env PATH=$PATH:/usr/local/bin pm2 startup --hp /home/ubuntu
    
