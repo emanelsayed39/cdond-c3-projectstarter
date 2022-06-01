@@ -35,7 +35,7 @@
   become: true
   become_user: root
   shell: |
-    cd /home/ubuntu/backend/src
+    ls /home/ubuntu/backend
     pm2 stop default
     pm2 start /home/ubuntu/backend/src/main.ts
    
