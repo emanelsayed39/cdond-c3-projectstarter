@@ -10,11 +10,11 @@
     state: directory
     mode: 0755
 
-- name: Extract artifact.tar.gz
-  become: true
-  ansible.builtin.unarchive:
-    src: ~/project/artifact.tar.gz
-    dest: /home/ubuntu
+#- name: Extract artifact.tar.gz
+#  become: true
+#  ansible.builtin.unarchive:
+#    src: ~/project/artifact.tar.gz
+#    dest: /home/ubuntu
     
 
 #- name: Install packages
@@ -23,12 +23,12 @@
  #   path: ~/backend
    
 
-- name: Executing node
-  become: true
-  become_user: root
-  shell: |
-    cd /home/ubuntu/backend
-    npm install
+#- name: Executing node
+#  become: true
+#  become_user: root
+#  shell: |
+#    cd /home/ubuntu/backend
+ #   npm install
 
 
 - name: start service
@@ -36,7 +36,7 @@
   become_user: root
   shell: |
     pm2 stop default
-    pm2 start "mpm run start"
+    pm2 start npm --start
     pm2 report
 
 - name: start pm2 server
