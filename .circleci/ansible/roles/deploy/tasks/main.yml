@@ -23,11 +23,14 @@
  #   path: ~/backend
    
 
-#- name: Executing node
-#  become: true
-#  become_user: root
-#  shell: |
-#    cd /home/ubuntu/backend
+- name: Executing node
+  become: true
+  become_user: root
+  shell: |
+    cd /home/ubuntu/backend
+
+    ls
+
  #   npm install
 
 
@@ -35,7 +38,7 @@
   become: true
   become_user: root
   shell: |
-    ls /home/ubuntu/backend
+    ls 
     pm2 stop default
     pm2 start /home/ubuntu/backend/src/main.ts
    
