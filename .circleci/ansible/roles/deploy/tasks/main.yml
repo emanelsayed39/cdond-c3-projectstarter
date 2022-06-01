@@ -14,7 +14,7 @@
   become: true
   ansible.builtin.unarchive:
     src: ~/project/artifact.tar.gz
-    dest: ~/backend
+    dest: /Home/ubuntu
     
 
 #- name: Install packages
@@ -27,8 +27,9 @@
   become: true
   become_user: root
   shell: |
-    cd ~/backend
+    cd /Home/ubuntu/backend
     npm install
+    cd /Home/ubuntu/backend/dist
     pm2 stop default
-    pm2 start "npm run start"
+    pm2 start main.js
    
