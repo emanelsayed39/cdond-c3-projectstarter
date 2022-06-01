@@ -35,7 +35,6 @@
   become: true
   become_user: root
   shell: |
-    
     pm2 stop default
     pm2 start "mpm run start"
     pm2 report
