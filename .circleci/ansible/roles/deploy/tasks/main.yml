@@ -1,7 +1,5 @@
-#- name: create opt directory for prometheus
- # file:
-  #  path: /backend
- #   state: 
+
+
 - name: start server
   become: true
   become_user: root
@@ -18,14 +16,14 @@
     state: directory
     mode: 0755
 
-#- name: Extract artifact.tar.gz
+ #- name: Extract artifact.tar.gz
  # become: true
  # ansible.builtin.unarchive:
  #   src: ~/project/artifact.tar.gz
  #   dest: /home/ubuntu
     
 
-#- name: Install packages
+ #- name: Install packages
  # become: true
  # npm:
  #   path: ~/backend
@@ -34,9 +32,9 @@
  #- name: Executing node
  #  become: true
  # become_user: root
-#  shell: |
+ #  shell: |
  #   cd /home/ubuntu/backend
-#    npm install
+ #    npm install
 
 
 
