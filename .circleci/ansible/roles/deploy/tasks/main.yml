@@ -23,7 +23,7 @@
  #   path: ~/backend
    
 
-- name: Executing node1
+- name: Executing node
   become: true
   become_user: root
   shell: |
