@@ -31,7 +31,7 @@
     npm install
 
 
-- name: "start service"
+- name: start service
   become: true
   become_user: root
   shell: |
@@ -39,8 +39,8 @@
     pm2 start "mpm run start"
     pm2 report
 
--name: "start pm2 server"
- become: true
- shell: |
-  env PATH=$PATH:/usr/local/bin pm2 startup --hp /home/ubuntu
+- name: start pm2 server
+  become: true
+  shell: |
+    env PATH=$PATH:/usr/local/bin pm2 startup --hp /home/ubuntu
    
