@@ -14,7 +14,7 @@
   become: true
   ansible.builtin.unarchive:
     src: ~/project/artifact.tar.gz
-    dest: /Home/ubuntu
+    dest: /home/ubuntu
     
 
 #- name: Install packages
