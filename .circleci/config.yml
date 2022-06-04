@@ -249,7 +249,7 @@ jobs:
           name: zip backend
           command: |
            cd backend
-           #Cd ..
+           Cd ..
            npm install 
            npm run build
            tar -C backend -czf artifact.tar.gz .
