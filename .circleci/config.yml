@@ -239,9 +239,9 @@ jobs:
           name: Install dependencies
           command: |
                 apk add --update curl
-                apk add --update ansible
-                apk add --update nodejs
-                apk add --update npm
+                apk add  ansible
+                apk add  nodejs
+                apk add  npm
                 # curl -fsSL https://deb.nodesource.com/setup_13.x 
                 # apt install -y nodejs
 
@@ -313,7 +313,7 @@ workflows:
       #    requires: [configure-infrastructure]
      # - deploy-frontend:
       #    requires: [run-migrations]
-      #- deploy-backend
+      - deploy-backend
        #   requires: [run-migrations]
-      - smoke-test-backend
-         # requires: [deploy-backend]
+      - smoke-test-backend:
+          requires: [deploy-backend]
