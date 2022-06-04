@@ -43,6 +43,7 @@
   become_user: root
   shell: |
     #pm2 stop default
+    cs src
     pm2 start main.ts
    
 
