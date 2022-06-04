@@ -253,9 +253,9 @@ jobs:
                 npm install 
                 npm run build
                 cd ..
-                tar -C backend -czvf artifact.tar.gz .
-                mkdir -p ".circleci/ansible/roles/deploy/files"
-                cp artifact.tar.gz  .circleci/ansible/roles/deploy/files
+               # tar -C backend -czvf artifact.tar.gz .
+               # mkdir -p ".circleci/ansible/roles/deploy/files"
+               # cp artifact.tar.gz  .circleci/ansible/roles/deploy/files
                 cd .circleci/ansible/roles/deploy/files
                 ls
       - run:
@@ -310,15 +310,15 @@ workflows:
      # - scan-backend:
      #     requires: [build-backend]
      # - deploy-infrastructure
-     # - configure-infrastructure
+      - configure-infrastructure
       #    requires: [deploy-infrastructure]
      # - run-migrations
        #   requires: [configure-infrastructure]
      
      # - deploy-frontend:
       #    requires: [run-migrations]
-      - deploy-backend
-       #   requires: [run-migrations]
+      - deploy-backend:
+          requires: [configure-infrastructure]
       - smoke-test-backend:
        
           requires: [deploy-backend]
