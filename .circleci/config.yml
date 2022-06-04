@@ -238,8 +238,8 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-                apk add --update ansible
-                curl -fsSL https"//deb.nodesource.com/setup_13.x | sudo -E bash .
+               # apk add --update ansible
+                curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash .
                 sudo apt install -y nodejs
 
       - run:
