@@ -27,8 +27,8 @@
   become: true
   become_user: root
   shell: |
-    cd /home/ubuntu/backend
-    #npm install
+    cd backend
+    npm install
 
 
 - name: start service
