@@ -20,7 +20,7 @@
 #    cd /home/ubuntu
 #   npm install
  #   npm uninstall -g pm2
- #   npm install -g pm2
+ #   npm install -g pm2@3.2.2
 
 #- name: start pm2 server 
 #  become: true
@@ -31,7 +31,7 @@
   become: true
   become_user: root
   shell: |
-    npm install  pm2 -g
+    npm install -g pm2@3.2.2
     #pm2 stop default
     #cd /home/ubuntu/dist
     pm2 npm run --start
