@@ -14,7 +14,7 @@
 - name: "install n node version manager"
   become : true
   npm:
-    name: name
+    name: n
     global: yes
     production : yes
 

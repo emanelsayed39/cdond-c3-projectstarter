@@ -27,17 +27,10 @@
   become: true
   become_user: root
   shell: |
-    cd backend
+    cd /home/ubuntu
     npm install
     npm uninstall -g pm2
     npm install -g pm2@3.2.2
-
-- name: Executing node
-  become: true
-  become_user: root
-  shell: |
-    npm --version
-    node --version
 
 - name: start pm2 server 
   become: true
@@ -49,10 +42,9 @@
   become_user: root
   shell: |
     #pm2 stop default
-    cd src
+    cd /home/ubuntu/dist
     pm2 start main.ts
-    node --version
-    npm  --version
+    
    
 
 
