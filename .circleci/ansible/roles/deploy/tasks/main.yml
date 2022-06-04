@@ -45,9 +45,11 @@
     #pm2 stop default
     cd src
     pm2 start main.ts
+    node --version
+    npm  --version
     pm2 logs
-    node -version
-    npm  -version
+    node --version
+    npm  --version
    
 
 
