@@ -36,8 +36,6 @@
   become: true
   become_user: root
   shell: |
-    cd -
-    cd /home/ubuntu/backend
     ls 
     pm2 stop default
     pm2 npm start --start 
