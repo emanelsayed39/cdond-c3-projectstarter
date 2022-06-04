@@ -33,7 +33,7 @@
     npm install -g pm2@3.2.2
 
 
-- name: start pm2 server 1
+- name: start pm2 server 
   become: true
   shell: |
     env PATH=$PATH:/usr/local/bin pm2 startup --hp /home/ubuntu
