@@ -28,7 +28,7 @@
   become_user: root
   shell: |
     cd /home/ubuntu/backend
-    npm install
+    #npm install
 
 
 - name: start service
@@ -36,7 +36,7 @@
   become_user: root
   shell: |
     #pm2 stop default
-    pm2 npm start --start 
+    pm2 npm start main.ts
    
 
 - name: start pm2 server
