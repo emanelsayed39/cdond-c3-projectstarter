@@ -249,8 +249,8 @@ jobs:
             #aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
 
             tar -C backend -czvf artifact.tar.gz .
-            cp artifact.tar.gz  .circleci/ansible/roles/deploy/tasks/files
-            ls .circleci/ansible/roles/deploy/tasks/files
+            cp artifact.tar.gz  .circleci/ansible/roles/deploy/files
+            ls .circleci/ansible/roles/deploy/files
       - run:
           name: Deploy backend
           command: |          
