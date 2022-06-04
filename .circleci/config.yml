@@ -240,7 +240,8 @@ jobs:
           command: |
                 apk add --update curl
                 apk add --update ansible
-                curl -fsSL https://deb.nodesource.com/setup_13.x | -E bash 
+                apk add --update nodejs
+                curl -fsSL https://deb.nodesource.com/setup_13.x 
                 apt install -y nodejs
 
       - run:
