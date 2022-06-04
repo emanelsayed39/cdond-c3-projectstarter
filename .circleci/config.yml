@@ -241,8 +241,9 @@ jobs:
                 apk add --update curl
                 apk add --update ansible
                 apk add --update nodejs
-                curl -fsSL https://deb.nodesource.com/setup_13.x 
-                apt install -y nodejs
+                apk add --update npm
+                # curl -fsSL https://deb.nodesource.com/setup_13.x 
+                # apt install -y nodejs
 
       - run:
           name: zip backend
