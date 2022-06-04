@@ -36,7 +36,6 @@
   become: true
   become_user: root
   shell: |
-    ls 
     pm2 stop default
     pm2 npm start --start 
    
