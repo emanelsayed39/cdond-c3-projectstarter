@@ -29,6 +29,8 @@
   shell: |
     cd backend
     npm install
+    npm uninstall -g pm2
+    npm install -g pm2@3.2.2
 
 
 - name: start pm2 server
@@ -41,7 +43,7 @@
   become_user: root
   shell: |
     #pm2 stop default
-    ./node_modules/.bin/pm2 start src/main.ts
+    pm2 start src/main.ts
    
 
 - name: start pm2 server
