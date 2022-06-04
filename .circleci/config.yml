@@ -82,7 +82,7 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - run:S
+      - run:
           name: back-end scan
           command: |
               cd backend
