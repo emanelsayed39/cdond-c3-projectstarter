@@ -282,7 +282,7 @@ jobs:
               export BACKEND_IP=$(aws ec2 describe-instances \
               --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
               echo "API_URL = ${APBACKEND_IP}"
-              export API_URL="http://${BACKEND_IP}:3030"
+              export API_URL="http://${BACKEND_IP}:3030/api/status"
               echo "${API_URL}"
               if curl -s --head "${API_URL}"  
               then
