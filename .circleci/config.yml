@@ -249,9 +249,11 @@ jobs:
             #aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
 
             tar -C backend -czvf artifact.tar.gz .
+            
             cd -
             
             cd .circleci/ansible
+            cp artifact.tar.gz  roles/deply/tasks/files
             echo "Contents  of the inventory file is -------"
             cat inventory
             ansible-playbook -i inventory deploy-backend.yml
@@ -276,7 +278,7 @@ jobs:
               echo "API_URL = ${APBACKEND_IP}"
               export API_URL="http://${BACKEND_IP}:3030"
               echo "${API_URL}"
-              if curl -s --head "${API_URL}/api/status""  
+              if curl -s --head "${API_URL}"  
               then
                   exit 0
               else
@@ -299,13 +301,13 @@ workflows:
       - scan-backend:
           requires: [build-backend]
       #- deploy-infrastructure
-      - configure-infrastructure
+      #- configure-infrastructure
       #    requires: [deploy-infrastructure]
-      - run-migrations:
-          requires: [configure-infrastructure]
-      - deploy-frontend:
-          requires: [run-migrations]
-      - deploy-backend:
-          requires: [run-migrations]
+      #- run-migrations:
+        #  requires: [configure-infrastructure]
+      #- deploy-frontend:
+      #    requires: [run-migrations]
+      - deploy-backend
+       #   requires: [run-migrations]
       - smoke-test-backend:
           requires: [deploy-backend]

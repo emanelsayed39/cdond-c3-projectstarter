@@ -3,18 +3,18 @@
   #  path: /backend
  #   state: 
 
-- name: Creates Directory
-  become: yes
-  file:
-    path: ~/backend
-    state: directory
-    mode: 0755
+#- name: Creates Directory
+#  become: yes
+ # file:
+ #   path: ~/backend
+#    state: directory
+ #   mode: 0755
 
-#- name: Extract artifact.tar.gz
-#  become: true
-#  ansible.builtin.unarchive:
-#    src: ~/project/artifact.tar.gz
-#    dest: /home/ubuntu
+- name: Extract artifact.tar.gz
+  become: true
+  ansible.builtin.unarchive:
+    src:  project/artifact.tar.gz
+    dest: /home/ubuntu
     
 
 #- name: Install packages
@@ -31,7 +31,7 @@
 
     ls
 
- #   npm install
+    npm install
 
 
 - name: start service
@@ -41,7 +41,7 @@
     cd /home/ubuntu/backend
     ls 
     pm2 stop default
-# pm2 start /home/ubuntu/backend/src/main.ts
+  # pm2 start /home/ubuntu/backend/src/main.ts
     pm2 npm start --start 
    
 
