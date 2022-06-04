@@ -284,7 +284,7 @@ jobs:
               echo "API_URL = ${APBACKEND_IP}"
               export API_URL="http://${BACKEND_IP}:3030/api/status"
               echo "${API_URL}"
-              if curl -s "${API_URL}"  
+              if curl  "${API_URL}"  
               then
                   exit 0
               else
