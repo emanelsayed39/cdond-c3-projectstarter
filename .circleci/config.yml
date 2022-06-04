@@ -238,9 +238,10 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+                apt install curl
                 apk add --update ansible
-                curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash 
-                sudo apt install -y nodejs
+                curl -fsSL https://deb.nodesource.com/setup_13.x | -E bash 
+                apt install -y nodejs
 
       - run:
           name: zip backend
