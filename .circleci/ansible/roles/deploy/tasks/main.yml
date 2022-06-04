@@ -13,7 +13,7 @@
 - name: Extract artifact.tar.gz
   become: true
   ansible.builtin.unarchive:
-    src:  project/artifact.tar.gz
+    src:  artifact.tar.gz
     dest: /home/ubuntu
     
 
