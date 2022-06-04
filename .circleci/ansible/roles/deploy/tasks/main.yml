@@ -29,7 +29,6 @@
   shell: |
     cd /home/ubuntu/backend
     npm install
-    npm build
 
 
 - name: start service
