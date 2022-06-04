@@ -240,7 +240,7 @@ jobs:
           command: |
                 apk add --update ansible
       - run:
-          name: Deploy backend
+          name: zip backend
           command: |
            #cd backend
            #Cd ..
@@ -250,8 +250,10 @@ jobs:
 
             tar -C backend -czvf artifact.tar.gz .
             cp artifact.tar.gz  .circleci/ansible/roles/deploy/tasks/files
-            cd -
-            
+            ls .circleci/ansible/roles/deploy/tasks/files
+      - run:
+          name: Deploy backend
+          command: |          
             cd .circleci/ansible
  
             echo "Contents  of the inventory file is -------"
