@@ -168,7 +168,7 @@ jobs:
       - image: cimg/node:13.8.0
     steps:
       - checkout
-      - restore_cashe:
+      - restore_cache:
           keys : [backend-depnd]
       - run:
           name: Run migrations
