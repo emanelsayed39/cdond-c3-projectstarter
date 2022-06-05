@@ -12,7 +12,7 @@
     state: latest
     update_cache: yes
 
-- name: "install n node version manager"
+- name: "install n node version manager1"
   become : true
   npm:
     name: n
