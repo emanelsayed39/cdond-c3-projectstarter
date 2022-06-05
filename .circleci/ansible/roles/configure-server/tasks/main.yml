@@ -33,6 +33,7 @@
 
 - name: "install pm2"
   become: true
+  become_user: roo
   shell:
-    cd home/ubuntu
+    cd /home/ubuntu
     npm install -g pm2
