@@ -28,8 +28,8 @@
     #npm install -g pm2@3.2.2
     
     cd /home/ubuntu/dist
-    pm2  stop default
-    pm2  start main.ts
+    #pm2  stop default
+    pm2  start main.js
     
    
 
