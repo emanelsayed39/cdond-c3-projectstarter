@@ -1,22 +1,22 @@
 ---
 
-#- name: "upgrade packages."
-#  become: true
-#  apt:
- #   upgrade: "yes"
+- name: "upgrade packages."
+  become: true
+  apt:
+    upgrade: "yes"
 
-#- name: "remove dependencies"
-#  become: true
- # apt:
- #   autoremove: yes
+- name: "remove dependencies"
+  become: true
+  apt:
+    autoremove: yes
 
 
-#- name: "install dependencies."
-#  become: true
- # apt:
-#    name: ["nodejs","npm"]
- #   state: latest
- #   update_cache: yes
+- name: "install dependencies."
+  become: true
+  apt:
+    name: ["nodejs","npm"]
+    state: latest
+    update_cache: yes
 
 - name: "install n node version manager1"
   become : true
@@ -25,15 +25,16 @@
     global: yes
     production : yes
 
-#- name: "install nodjs 13"
-#  become: true
- # shell: n 13.8.0
+- name: "install nodjs 13"
+  become: true
+  shell: n 13.8.0
 
 
 
 - name: "install pm2"
   become: true
-  become_user: root
   shell:
-    cd /home/ubuntu
-    npm install -g pm2
+    name: pm2
+    global: yes
+    production: yes
+    state: present

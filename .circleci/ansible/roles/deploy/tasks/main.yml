@@ -15,10 +15,6 @@
     npm install
 
 
-#- name: start pm2 server 
- # become: true
-#  shell: |
-#    env PATH=$PATH:/usr/local/bin pm2 startup --hp /home/ubuntu
 
 - name: start service
   become: true
@@ -27,6 +23,12 @@
     cd /home/ubuntu/dist
     #pm2  stop default
     pm2 start main.js
+
+- name: start pm2 server 
+  become: true
+  shell: |
+    env PATH=$PATH:/usr/local/bin pm2 startup --hp /home/ubuntu
+
     
    
 
