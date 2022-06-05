@@ -11,7 +11,7 @@
     upgrade: "yes"
 
 - name: " remove dependencies"
-  become :true
+  become: true
   apt:
     autoremove: yes
 
