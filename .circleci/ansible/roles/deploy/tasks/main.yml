@@ -15,10 +15,10 @@
     npm install
 
 
-- name: start pm2 server 
-  become: true
-  shell: |
-    env PATH=$PATH:/usr/local/bin pm2 startup --hp /home/ubuntu
+#- name: start pm2 server 
+ # become: true
+#  shell: |
+#    env PATH=$PATH:/usr/local/bin pm2 startup --hp /home/ubuntu
 
 - name: start service
   become: true
