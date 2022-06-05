@@ -37,4 +37,4 @@
     name: pm2
     global: yes
     production: yes
-    state: presentS
+    state: present
