@@ -168,11 +168,13 @@ jobs:
       - image: cimg/node:13.8.0
     steps:
       - checkout
+      - restore_cashe:
+          keys : [backend-depnd]
       - run:
           name: Run migrations
           command: |
             cd backend
-            npm install
+            npm i
             npm run migrations > migrations_dump.txt
            
       - run:
