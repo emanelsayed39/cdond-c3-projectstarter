@@ -17,10 +17,10 @@ commands:
   install_nodejs:
     description: "install node js"
     steps:
-      -run:
+      - run:
           name: "node13"
           command: |
-            curl -fsSL https://dep.nodesource.com/setup_13.x 
+            curl -fsSL https://dep.nodesource.com/setup_13.x | sudo -E bash -
             sudo apt install -y nodejs
 jobs:
   build-frontend:
