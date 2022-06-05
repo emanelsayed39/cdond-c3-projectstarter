@@ -5,7 +5,7 @@
   apt:
     upgrade: "yes"
 
-- name: " remove dependencies"
+- name: "remove dependencies"
   become: true
   apt:
     autoremove: yes
