@@ -250,8 +250,16 @@ jobs:
       - attach_workspace:
             at: ~/
       - install_nodejs
+
       - run:
-          name: Install dependencies
+          name: Install node 13
+          command: |
+        
+                curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+                sudo apt install -y nodejs
+
+      - run:
+          name: Install ansible
           command: |
         
                 #apk update && apk add --no-cache wget
@@ -261,9 +269,8 @@ jobs:
                 #apk add --upeate nodejs
    
                 #install ansible
-                sudo node -- version
+                
                 sudo apt update
-                sudo apt install  curl
                 sudo apt install software-properties-common -y
                 sudo add-apt-repository --yes --update ppa:ansible/ansible
                 sudo apt install  ansible -y
