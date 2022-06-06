@@ -262,14 +262,6 @@ jobs:
           name: Install ansible
           command: |
         
-                #apk update && apk add --no-cache wget
-
-                #wget https://nodejs.org/dist/v13.0.1/node-v13.0.1-linux-x64.tar.xz 
-                #tar -xf node-v13.0.1-linux-x64.tar.xz     
-                #apk add --upeate nodejs
-   
-                #install ansible
-                
                 sudo apt update
                 sudo apt install software-properties-common -y
                 sudo add-apt-repository --yes --update ppa:ansible/ansible
@@ -340,15 +332,15 @@ workflows:
           requires: [build-frontend]
       - scan-backend:
           requires: [build-backend]
-     # - deploy-infrastructure
-      #- configure-infrastructure:
-      #    requires: [deploy-infrastructure]
-     # - run-migrations:
-      #    requires: [configure-infrastructure]
+      - deploy-infrastructure
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
+      - run-migrations:
+          requires: [configure-infrastructure]
      
-      #- deploy-frontend:
-      #    requires: [run-migrations]
-      - deploy-backend
-       #   requires: [run-migrations]
+      - deploy-frontend:
+          requires: [run-migrations]
+      - deploy-backend:
+          requires: [run-migrations]
       - smoke-test-backend:
           requires: [deploy-backend]
