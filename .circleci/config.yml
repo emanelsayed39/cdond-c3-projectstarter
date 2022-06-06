@@ -124,7 +124,7 @@ jobs:
               --tags project=udapeople --region us-east-1
         
         - run:
-            name: Add back-end ip to ansible inventory
+            name: Add back-end ip to ansible inventory1
             command: |
               cd .circleci/ansible
               cat inventory
