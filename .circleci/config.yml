@@ -251,8 +251,9 @@ jobs:
           name: Install dependencies
           command: |
         
-                apk add  --no-cache --repository ="http://dl-cdn.alpinelinux.org/alpine/edge/community"
-                #apk add --upeate nodejs
+                apk update && apk add --no-cache wget
+
+                wget https://nodejs.org/dist/v13.0.1/node-v13.0.1-linux-x64.tar.xz && tar -xf node-v13.0.1-linux-x64.tar.xz     #apk add --upeate nodejs
                 #apk add  npm
                 node -- version
                 apk add --update curl
