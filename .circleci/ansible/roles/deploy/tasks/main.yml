@@ -1,18 +1,18 @@
 
-- name: Extract artifact.tar.gz
-  become: true
-  ansible.builtin.unarchive:
-    src:  artifact.tar.gz
-    dest: /home/ubuntu
+#- name: Extract artifact.tar.gz
+ # become: true
+#  ansible.builtin.unarchive:
+ #   src:  artifact.tar.gz
+#    dest: /home/ubuntu
     
    
 
-- name: Executing node
-  become: true
-  become_user: root
-  shell: |
-    cd /home/ubuntu
-    npm install
+#- name: Executing node
+#  become: true
+ # become_user: root
+ # shell: |
+ #   cd /home/ubuntu
+ #   npm install
 
 
 
