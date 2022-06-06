@@ -3,7 +3,7 @@
   become: true
   ansible.builtin.unarchive:
     src:  artifact.tar.gz
-    dest: /home/ubuntu
+    dest: /home/ubuntu/backend
     
    
 
