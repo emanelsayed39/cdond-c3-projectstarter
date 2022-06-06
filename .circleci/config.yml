@@ -261,10 +261,10 @@ jobs:
                 #apk add  npm
                 #node -- version
                 apt update
-                apt install  curl
-                apt install software-properties-common -y
-                add-apt-repository --yes --update ppa:ansible/ansible
-                apt install  ansible -y
+                #apt install  curl
+                #apt install software-properties-common -y
+                #add-apt-repository --yes --update ppa:ansible/ansible
+                #apt install  ansible -y
             
       - install_nodejs
       - run:
