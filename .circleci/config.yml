@@ -261,7 +261,7 @@ jobs:
                 sudo apt install software-properties-common -y
                 sudo add-apt-repository --yes --update ppa:ansible/ansible
                 sudo apt install  ansible -y
-                
+
       - add_ssh_keys:
           fingerprints: ["04:81:dd:a2:9c:fc:39:af:36:3d:ac:17:14:14:9f:5a"]
             
@@ -280,7 +280,7 @@ jobs:
                 cd backend
                 sudo npm install 
                 sudo npm run build
-                cd ../
+                cd ..
                 tar -C backend -czvf artifact.tar.gz .
                 mkdir -p ".circleci/ansible/roles/deploy/files"
                 cp artifact.tar.gz  .circleci/ansible/roles/deploy/files
@@ -341,7 +341,7 @@ workflows:
       - scan-backend:
           requires: [build-backend]
       #- deploy-infrastructure
-      #- configure-infrastructure:
+      - configure-infrastructure
        #   requires: [deploy-infrastructure]
       #- run-migrations:
       #    requires: [configure-infrastructure]
@@ -349,6 +349,6 @@ workflows:
       #- deploy-frontend:
       #    requires: [run-migrations]
       - deploy-backend
-        #  requires: [run-migrations]
+          requires: [configure-infrastructure]
       - smoke-test-backend:
           requires: [deploy-backend]
