@@ -11,9 +11,9 @@
   become: true
   become_user: root
   shell: |
+    cd backend 
     #curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
     #sudo apt install -y nodejs
-    cd /home/ubuntu
     sudo npm install
     sudo npm run build
     sudo pm2 start npm --namebackend --start
