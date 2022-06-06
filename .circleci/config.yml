@@ -20,7 +20,7 @@ commands:
       - run:
           name: "node13"
           command: |
-            curl -fsSL https://dep.nodesource.com/setup_13.x | bash -
+            curl -fsSL https://dep.nodesource.com/setup_13.x | sudo -E bash -
             sudo apt install -y nodejs
 jobs:
   build-frontend:
