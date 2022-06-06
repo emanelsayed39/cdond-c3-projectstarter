@@ -1,9 +1,14 @@
+- name: Creates directory
+  file:
+    path: /home/ubuntu/backend
+    state: directory
+
 
 - name: Extract artifact.tar.gz
   become: true
   ansible.builtin.unarchive:
     src:  artifact.tar.gz
-    dest: /home/ubuntu/backend
+    dest: /home/ubuntu/
     
    
 
