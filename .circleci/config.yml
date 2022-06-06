@@ -252,10 +252,11 @@ jobs:
           command: |
                 apk add --update curl
                 apk add  ansible
+                apk add  --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.10/main/ nodejs
                 #apk add --upeate nodejs
                 #apk add  npm
             
-      - install_nodejs
+      #- install_nodejs
       - run:
           name: zip backend
           command: |
