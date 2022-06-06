@@ -239,7 +239,7 @@ jobs:
   deploy-backend:
 
     docker:
-        - image: mhart/alpine-node:13.8.0
+        - image: sleavely/node-awscli:14.x
     steps:
       - checkout
       
@@ -248,13 +248,18 @@ jobs:
       - attach_workspace:
             at: ~/
       - run:
+          name: check node version
+          command: |
+              node --version
+
+      - run:
           name: Install dependencies
           command: |
         
-                #apk update && apk add --no-cache wget
+                apk update && apk add --no-cache wget
 
-                #wget https://nodejs.org/dist/v13.0.1/node-v13.0.1-linux-x64.tar.xz 
-                #tar -xf node-v13.0.1-linux-x64.tar.xz     
+                wget https://nodejs.org/dist/v13.0.1/node-v13.0.1-linux-x64.tar.xz 
+                tar -xf node-v13.0.1-linux-x64.tar.xz     
                 #apk add --upeate nodejs
    
                 #apk add  npm
