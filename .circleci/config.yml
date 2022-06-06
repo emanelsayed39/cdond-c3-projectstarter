@@ -239,7 +239,7 @@ jobs:
   deploy-backend:
 
     docker:
-        - image: python:3.7-alpine3.11
+        - image: mhart/alpine-node:13.8.0
     steps:
       - checkout
       
@@ -251,9 +251,12 @@ jobs:
           name: Install dependencies
           command: |
         
-                apk update && apk add --no-cache wget
+                #apk update && apk add --no-cache wget
 
-                wget https://nodejs.org/dist/v13.0.1/node-v13.0.1-linux-x64.tar.xz && tar -xf node-v13.0.1-linux-x64.tar.xz     #apk add --upeate nodejs
+                #wget https://nodejs.org/dist/v13.0.1/node-v13.0.1-linux-x64.tar.xz 
+                #tar -xf node-v13.0.1-linux-x64.tar.xz     
+                #apk add --upeate nodejs
+   
                 #apk add  npm
                 node -- version
                 apk add --update curl
