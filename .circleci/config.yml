@@ -239,7 +239,7 @@ jobs:
   deploy-backend:
 
     docker:
-        - image: sleavely/node-awscli:13.x
+        - image: sleavely/node-awscli:14.x
     steps:
       - checkout
       
@@ -256,14 +256,14 @@ jobs:
           name: Install dependencies
           command: |
         
-                apk update && apk add --no-cache wget
+                #apk update && apk add --no-cache wget
 
-                wget https://nodejs.org/dist/v13.0.1/node-v13.0.1-linux-x64.tar.xz 
-                tar -xf node-v13.0.1-linux-x64.tar.xz     
+                #wget https://nodejs.org/dist/v13.0.1/node-v13.0.1-linux-x64.tar.xz 
+                #tar -xf node-v13.0.1-linux-x64.tar.xz     
                 #apk add --upeate nodejs
    
                 #apk add  npm
-                node -- version
+                #node -- version
                 apk add --update curl
                 apk add  ansible
             
