@@ -22,6 +22,8 @@ commands:
           command: |
             curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
             sudo apt install -y nodejs
+  
+
 jobs:
   build-frontend:
     docker:
@@ -247,7 +249,7 @@ jobs:
             fingerprints: ["04:81:dd:a2:9c:fc:39:af:36:3d:ac:17:14:14:9f:5a"]
       - attach_workspace:
             at: ~/
-      
+      - install_nodejs
       - run:
           name: Install dependencies
           command: |
@@ -258,15 +260,15 @@ jobs:
                 #tar -xf node-v13.0.1-linux-x64.tar.xz     
                 #apk add --upeate nodejs
    
-                #apk add  npm
-                #node -- version
-                #apt update
-                #apt install  curl
-                #apt install software-properties-common -y
-                #add-apt-repository --yes --update ppa:ansible/ansible
-                #apt install  ansible -y
+                #install ansible
+                sudo node -- version
+                sudo apt update
+                sudo apt install  curl
+                sudo apt install software-properties-common -y
+                sudo add-apt-repository --yes --update ppa:ansible/ansible
+                sudo apt install  ansible -y
             
-      - install_nodejs
+      
       - run:
           name: zip backend
           command: |
