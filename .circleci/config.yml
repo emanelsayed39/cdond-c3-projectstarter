@@ -265,7 +265,7 @@ jobs:
                 #apk add  npm
                 #node -- version
                 apt install  curl
-                apk install  ansible
+                apt install  ansible
             
       #- install_nodejs
       - run:
