@@ -15,7 +15,7 @@ commands:
             aws cloudformation delete-stack --stack-name prod-${CIRCLE_WORKFLOW_ID:0:7} 
 
   install_nodejs:
-    description: "install node js"
+    description: "install node js 13"
     steps:
       - run:
           name: "node13"
@@ -242,7 +242,7 @@ jobs:
         - image: python:3.7-alpine3.11
     steps:
       - checkout
-      #- install_nodejs
+      
       - add_ssh_keys:
             fingerprints: ["04:81:dd:a2:9c:fc:39:af:36:3d:ac:17:14:14:9f:5a"]
       - attach_workspace:
@@ -252,13 +252,14 @@ jobs:
           command: |
                 apk add --update curl
                 apk add  ansible
-                #apk add  nodejs
-                apk add  npm
-               
-
+                #apk add --upeate nodejs
+                #apk add  npm
+            
+      - install_nodejs
       - run:
           name: zip backend
           command: |
+                node -- version
                 cd backend
                 npm install 
                 npm run build
