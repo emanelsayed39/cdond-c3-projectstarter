@@ -1,18 +1,18 @@
 
-#- name: Extract artifact.tar.gz
- # become: true
-#  ansible.builtin.unarchive:
- #   src:  artifact.tar.gz
-#    dest: /home/ubuntu
+- name: Extract artifact.tar.gz
+  become: true
+  ansible.builtin.unarchive:
+    src:  artifact.tar.gz
+    dest: /home/ubuntu
     
    
 
-#- name: Executing node
-#  become: true
- # become_user: root
- # shell: |
- #   cd /home/ubuntu
- #   npm install
+- name: Executing node
+  become: true
+  become_user: root
+  shell: |
+    cd /home/ubuntu
+    npm install
 
 
 
@@ -24,10 +24,11 @@
     pm2  stop default
     pm2  start npm -- start
 
-- name: start pm2 server 
-  become: true
-  shell: |
-    env PATH=$PATH:/usr/local/bin pm2 startup --hp /home/ubuntu
+#- name: start pm2 server 
+#  become: true
+ 
+ # shell: |
+ #   env PATH=$PATH:/usr/local/bin pm2 startup --hp /home/ubuntu
 
     
    
