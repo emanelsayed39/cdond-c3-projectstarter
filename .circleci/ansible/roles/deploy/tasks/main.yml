@@ -21,17 +21,16 @@
     #sudo apt install -y nodejs
     sudo npm install
     sudo npm run build
-    sudo pm2 start npm --namebackend --start
+   
 
 
-
-- name: start service1
+- name: start service
   become: true
   become_user: root
   shell: |
-    cd /home/ubuntu
+    cd /home/ubuntu/backend
     pm2  stop default
-    sudo pm2 start npm --namebackend --start
+    sudo pm2 start npm --name backend --start
 
 - name: start pm2 server 
   become: true
