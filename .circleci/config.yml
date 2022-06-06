@@ -260,14 +260,14 @@ jobs:
           name: zip backend
           command: |
                 #cd backend
-               # npm install 
+                # npm install 
                 #npm run build
                 #cd ..
-                   tar -C backend -czvf artifact.tar.gz .
-                   mkdir -p ".circleci/ansible/roles/deploy/files"
-                   cp artifact.tar.gz  .circleci/ansible/roles/deploy/files
-                   cd .circleci/ansible/roles/deploy/files
-                   ls
+                tar -C backend -czvf artifact.tar.gz .
+                mkdir -p ".circleci/ansible/roles/deploy/files"
+                cp artifact.tar.gz  .circleci/ansible/roles/deploy/files
+                cd .circleci/ansible/roles/deploy/files
+                ls
       - run:
           name: Deploy backend
           command: |          
