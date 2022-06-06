@@ -22,7 +22,7 @@
   shell: |
     cd /home/ubuntu
     pm2  stop default
-    pm2  start npm --start
+    pm2  start npm -- start
 
 - name: start pm2 server 
   become: true
