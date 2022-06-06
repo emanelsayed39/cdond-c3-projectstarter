@@ -28,11 +28,11 @@
     pm2  stop default
     sudo pm2 start npm --namebackend --start
 
-#- name: start pm2 server 
-#  become: true
+- name: start pm2 server 
+  become: true
  
- # shell: |
- #   env PATH=$PATH:/usr/local/bin pm2 startup --hp /home/ubuntu
+  shell: |
+    env PATH=$PATH:/usr/local/bin pm2 startup --hp /home/ubuntu
 
     
    
