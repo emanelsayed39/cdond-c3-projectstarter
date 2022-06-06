@@ -242,7 +242,7 @@ jobs:
         - image: python:3.7-alpine3.11
     steps:
       - checkout
-      - install_nodejs
+      #- install_nodejs
       - add_ssh_keys:
             fingerprints: ["04:81:dd:a2:9c:fc:39:af:36:3d:ac:17:14:14:9f:5a"]
       - persist_to_workspace:
@@ -321,15 +321,15 @@ workflows:
           requires: [build-frontend]
       - scan-backend:
           requires: [build-backend]
-      - deploy-infrastructure
-      - configure-infrastructure:
-          requires: [deploy-infrastructure]
-      - run-migrations:
-          requires: [configure-infrastructure]
+     # - deploy-infrastructure
+     # - configure-infrastructure:
+      #    requires: [deploy-infrastructure]
+     # - run-migrations:
+       #   requires: [configure-infrastructure]
      
-      - deploy-frontend:
-          requires: [run-migrations]
-      - deploy-backend:
-          requires: [run-migrations]
+      #- deploy-frontend:
+      #    requires: [run-migrations]
+      - deploy-backend
+        #  requires: [run-migrations]
       - smoke-test-backend:
           requires: [deploy-backend]
