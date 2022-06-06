@@ -246,8 +246,6 @@ jobs:
     steps:
       - checkout
       
-      - add_ssh_keys:
-          fingerprints: ["04:81:dd:a2:9c:fc:39:af:36:3d:ac:17:14:14:9f:5a"]
       - attach_workspace:
           at: ~/
       - restore_cache:
@@ -269,8 +267,9 @@ jobs:
                 sudo apt install software-properties-common -y
                 sudo add-apt-repository --yes --update ppa:ansible/ansible
                 sudo apt install  ansible -y
+      - add_ssh_keys:
+          fingerprints: ["04:81:dd:a2:9c:fc:39:af:36:3d:ac:17:14:14:9f:5a"]
             
-      
       - run:
           name: zip backend
           command: |
