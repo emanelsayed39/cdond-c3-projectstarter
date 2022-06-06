@@ -249,9 +249,7 @@ jobs:
             at: ~/
       - run:
           name: check node version
-          #  command: |
-          #     node --version
-
+         
       - run:
           name: Install dependencies
           command: |
