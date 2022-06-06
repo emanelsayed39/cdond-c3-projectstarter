@@ -249,15 +249,15 @@ jobs:
             fingerprints: ["04:81:dd:a2:9c:fc:39:af:36:3d:ac:17:14:14:9f:5a"]
       - attach_workspace:
             at: ~/
-      - install_nodejs
-
       - run:
-          name: Install node 13
+          name: Install node and execute node
           command: |
-        
+                cd backend
                 curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
                 sudo apt install -y nodejs
-
+                sudo npm install -g apm@latest
+                sudo npm install -g webpack-dev-server
+               
       - run:
           name: Install ansible
           command: |
@@ -273,8 +273,8 @@ jobs:
           command: |
                
                 cd backend
-                npm install 
-                npm run build
+                sudo npm install 
+                sudo npm run build
                 cd ..
                 tar -C backend -czvf artifact.tar.gz .
                 mkdir -p ".circleci/ansible/roles/deploy/files"
@@ -332,15 +332,15 @@ workflows:
           requires: [build-frontend]
       - scan-backend:
           requires: [build-backend]
-      - deploy-infrastructure
-      - configure-infrastructure:
-          requires: [deploy-infrastructure]
-      - run-migrations:
-          requires: [configure-infrastructure]
+      #- deploy-infrastructure
+      #- configure-infrastructure:
+       #   requires: [deploy-infrastructure]
+      #- run-migrations:
+      #    requires: [configure-infrastructure]
      
-      - deploy-frontend:
-          requires: [run-migrations]
-      - deploy-backend:
-          requires: [run-migrations]
+      #- deploy-frontend:
+      #    requires: [run-migrations]
+      - deploy-backend
+        #  requires: [run-migrations]
       - smoke-test-backend:
           requires: [deploy-backend]
