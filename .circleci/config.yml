@@ -246,14 +246,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install node and execute node
-          command: |
-                cd backend
-                curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-                sudo apt install -y nodejs
-                sudo npm install -g apm@latest
-                sudo npm install -g webpack-dev-server
-      - run:
           name: Install ansible
           command: |
         
@@ -262,6 +254,15 @@ jobs:
                 sudo add-apt-repository --yes --update ppa:ansible/ansible
                 sudo apt install  ansible -y
 
+      - run:
+          name: Install node and execute node
+          command: |
+                cd backend
+                curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+                sudo apt install -y nodejs
+                sudo npm install -g apm@latest
+                sudo npm install -g webpack-dev-server
+      
       - add_ssh_keys:
           fingerprints: ["04:81:dd:a2:9c:fc:39:af:36:3d:ac:17:14:14:9f:5a"]
             
@@ -270,9 +271,6 @@ jobs:
       - restore_cache:
           keys : [backend-depnd]
       
-               
- 
-     
       - run:
           name: zip backend
           command: |
@@ -280,14 +278,14 @@ jobs:
                 cd backend
                 sudo npm install 
                 sudo npm run build
-                cd ..
-                tar -C backend -czvf artifact.tar.gz .
+                cd ../
+                tar -Czf  -czvf artifact.tar.gz backend
                 mkdir -p ".circleci/ansible/roles/deploy/files"
                 cp artifact.tar.gz  .circleci/ansible/roles/deploy/files
-                #cd .circleci/ansible/roles/deploy/files
-                #ls
+                cd .circleci/ansible/roles/deploy/files
+                ls
       - run:
-          name: Deploy backend 1
+          name: Deploy backend 
           command: | 
                 TYPEORM_MIGRATIONS_DIR=./src/migrations
                 TYPEORM_ENTITIES=./src/modules/domain/**/*.entity.ts
