@@ -12,7 +12,31 @@ commands:
           name: Destroy environments
           when: on_fail
           command: |
-            aws cloudformation delete-stack --stack-name prod-${CIRCLE_WORKFLOW_ID:0:7} 
+            aws cloudformation delete-stack --stack-name prod-${CIRCLE_WORKFLOW_ID:0:7}
+  
+
+  revert-migrations:
+    description: Revert the last migration
+    parameters:
+        workflow_id:
+            type: string      
+    steps:
+        - run:
+            name: Revert migrations
+            when: on_fail
+            command: |
+                # Your Memstash or kvdb.io GET URL code goes here
+                # Example: Memstash.io
+                SUCCESS=$(curl -H "token: e52b52de-ee26-41a5-86e8-e8dcc3d995a5" --request GET https://api.memstash.io/values/migration_<< parameters.workflow_id >>)
+                # Example: kvdb.io
+                SUCCESS=$(curl --insecure  https://kvdb.io/9GE4jRtKznmVKRfvdBABBe/migration_<< parameters.workflow_id >>)
+                # Logic for reverting the database state
+                if (( $SUCCESS == 1 ));
+                then
+                    cd ~/project/backend
+                    npm install
+                    npm run migration:revert
+                fi   
 
   install_nodejs:
     description: "install node js 13"
@@ -104,9 +128,10 @@ jobs:
               cd backend
               npm install
               # npm install oauth-sign@^0.9.0
-              npm audit fix --force
               npm audit --audit-level=critical
               npm audit fix --audit-level=critical --force
+              npm audit fix --force
+  
   deploy-infrastructure:
       docker:
         - image: amazon/aws-cli
@@ -139,7 +164,7 @@ jobs:
             root: ~/
             paths:
               - project/.circleci/ansible/inventory
-       # - destroy-environment
+        - destroy-environment
         
 
   configure-infrastructure:
@@ -151,9 +176,7 @@ jobs:
             fingerprints: ["04:81:dd:a2:9c:fc:39:af:36:3d:ac:17:14:14:9f:5a"]
         # attach workspace
         - attach_workspace:
-            at: ~/
-      
-              
+            at: ~/           
         - run:
             name: Install Ansible
             command: |
@@ -164,6 +187,7 @@ jobs:
               cd .circleci/ansible
               cat inventory
               ansible-playbook -i inventory configure-server.yml
+        - destroy-environment
               
   run-migrations:
     docker:
@@ -234,10 +258,12 @@ jobs:
             echo ${URL} 
             if curl -s  --head ${URL} 
             then
-              exit 0
+              exit 1
             else
               exit 1
             fi
+      - destroy-environment
+      - revert-migration
       # Here's where you will add some code to rollback on failure      
   deploy-backend:
 
@@ -336,15 +362,15 @@ workflows:
           requires: [build-frontend]
       - scan-backend:
           requires: [build-backend]
-      - deploy-infrastructure
-      - configure-infrastructure:
-          requires: [deploy-infrastructure]
-      - run-migrations:
-          requires: [configure-infrastructure]
+     # - deploy-infrastructure
+     # - configure-infrastructure:
+     #     requires: [deploy-infrastructure]
+     # - run-migrations:
+      #    requires: [configure-infrastructure]
      
-      - deploy-frontend:
-          requires: [run-migrations]
-      - deploy-backend:
-          requires: [configure-infrastructure]
-      - smoke-test-backend:
-          requires: [deploy-backend]
+      - deploy-frontend
+     #     requires: [run-migrations]
+     # - deploy-backend:
+      #    requires: [run-migrations]
+    #  - smoke-test-backend:
+       #   requires: [deploy-backend]
