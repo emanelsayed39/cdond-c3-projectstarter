@@ -337,14 +337,14 @@ workflows:
       - scan-backend:
           requires: [build-backend]
      # - deploy-infrastructure
-      - configure-infrastructure
+     # - configure-infrastructure
        #   requires: [deploy-infrastructure]
-      - run-migrations:
-          requires: [configure-infrastructure]
+     # - run-migrations:
+     #     requires: [configure-infrastructure]
      
-      - deploy-frontend:
-          requires: [run-migrations]
+    #  - deploy-frontend:
+     #     requires: [run-migrations]
       - deploy-backend:
-          requires: [configure-infrastructure]
+    #      requires: [configure-infrastructure]
       - smoke-test-backend:
           requires: [deploy-backend]
