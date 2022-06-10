@@ -118,6 +118,8 @@ jobs:
               npm install oauth-sign@^0.9.0
               npm audit --audit-level=critical
               npm audit fix --audit-level=critical --force
+              npm audit fix
+
           
 
   scan-backend:
@@ -134,6 +136,7 @@ jobs:
               npm audit --audit-level=critical
               npm audit fix --audit-level=critical --force
               npm audit fix --force
+              npm audit fix
   
   deploy-infrastructure:
       docker:
@@ -370,15 +373,17 @@ workflows:
           requires: [build-frontend]
       - scan-backend:
           requires: [build-backend]
-     # - deploy-infrastructure
-     # - configure-infrastructure:
-     #     requires: [deploy-infrastructure]
-     # - run-migrations:
-      #    requires: [configure-infrastructure]
+      - deploy-infrastructure
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
+      - run-migrations:
+          requires: [configure-infrastructure]
      
-      - deploy-frontend
-     #     requires: [run-migrations]
-     # - deploy-backend:
-      #    requires: [run-migrations]
-    #  - smoke-test-backend:
-       #   requires: [deploy-backend]
+      - deploy-frontend:
+          requires: [run-migrations]
+          requires: [build-frontend]
+      - deploy-backend:
+          requires: [run-migrations]
+          requires: [build-backend]
+      - smoke-test-backend:
+          requires: [deploy-backend]
