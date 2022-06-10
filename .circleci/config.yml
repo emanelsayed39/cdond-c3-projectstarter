@@ -380,8 +380,8 @@ workflows:
           requires: [configure-infrastructure]
      
       - deploy-frontend:
-          requires: [run-migrations]
-          requires: [build-frontend]
+          requires: [run-migrations][build-frontend]
+           
       - deploy-backend:
           requires: [run-migrations]
           requires: [build-backend]
