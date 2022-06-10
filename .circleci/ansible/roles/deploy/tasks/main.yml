@@ -27,9 +27,9 @@
   become: true
   become_user: root
   shell: |
-    #pm2 stop default
     cd /home/ubuntu/backend
-    sudo pm2 start npm --name backend 
+    pm2 stop default
+    sudo pm2 start npm -- start
 
 - name: start pm2 server 
   become: true
