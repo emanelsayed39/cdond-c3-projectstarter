@@ -1,7 +1,7 @@
-#- name: Creates directory
-#  file:
-#    path: /home/ubuntu/backend
- #   state: directory
+- name: Creates directory
+ file:
+    path: /home/ubuntu/backend
+    state: directory
 
 
 - name: Extract artifact.tar.gz
@@ -20,7 +20,7 @@
     #curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
     #sudo apt install -y nodejs
     sudo npm install
-    sudo npm run build
+    #sudo npm run build
    
 
 
@@ -28,7 +28,7 @@
   become: true
   become_user: root
   shell: |
-    cd /home/ubuntu/backend/disr
+    cd /home/ubuntu/backend/dist
     pm2  stop default
     sudo pm2 start npm --name backend --start
 
