@@ -33,7 +33,7 @@
 
 - name: start pm2 server 
   become: true
-   shell: |
+  shell: |
     env PATH=$PATH:/usr/local/bin pm2 startup --hp /home/ubuntu
 
     
