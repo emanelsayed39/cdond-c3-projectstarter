@@ -383,7 +383,8 @@ workflows:
           requires: [run-migrations][build-frontend]
            
       - deploy-backend:
-          requires: [run-migrations]
-          requires: [build-backend]
+          requires: 
+            [run-migrations]
+            [build-backend]
       - smoke-test-backend:
           requires: [deploy-backend]
