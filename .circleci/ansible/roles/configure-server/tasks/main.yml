@@ -5,10 +5,10 @@
   apt:
     upgrade: "yes"
 
-- name: "remove dependencies"
-  become: true
-  apt:
-    autoremove: yes
+#- name: "remove dependencies"
+ # become: true
+#  apt:
+ #   autoremove: yes
 
 
 - name: "install dependencies."
