@@ -397,12 +397,12 @@ workflows:
             [run-migrations]
            
            
-     # - deploy-backend:
+      - deploy-backend:
      
-     #     requires: 
-      #      [run-migrations]
+          requires: 
+            [run-migrations]
       - smoke-test-frontend:
           requires: [deploy-frontend] 
       
-      #- smoke-test-backend:
-      #    requires: [deploy-backend]
+      - smoke-test-backend:
+          requires: [deploy-backend]
