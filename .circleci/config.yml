@@ -232,7 +232,7 @@ jobs:
             keys : [backend-depnd]
 
       - run:
-            name: Ensure front-end infrastructure exist
+            name: Ensure front-end infrastructure exist 1
             command: |
               aws cloudformation deploy \
               --template-file .circleci/files/frontend.yml \
