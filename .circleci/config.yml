@@ -280,8 +280,8 @@ jobs:
             else
               exit 1
             fi
-     # - destroy-environment
-     # - revert-migrations
+      - destroy-environment
+      - revert-migrations
 
   deploy-backend:
 
@@ -390,19 +390,19 @@ workflows:
       
       #- configure-infrastructure
          # requires: [deploy-infrastructure]
-      - run-migrations
+     # - run-migrations
        #   requires: [configure-infrastructure]
      
-      - deploy-frontend:
-          requires:  [run-migrations]
+      #- deploy-frontend:
+       #   requires:  [run-migrations]
            
            
-      - deploy-backend:
+      #- deploy-backend:
      
-          requires: 
-            [run-migrations]
-      - smoke-test-frontend:
-          requires: [deploy-frontend] 
+       #   requires: 
+        #    [run-migrations]
+      - smoke-test-frontend
+      #    requires: [deploy-frontend] 
       
-      - smoke-test-backend:
-          requires: [deploy-backend]
+     # - smoke-test-backend:
+       #   requires: [deploy-backend]
