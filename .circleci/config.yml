@@ -276,12 +276,12 @@ jobs:
             echo ${URL} 
             if curl -s  --head ${URL} 
             then
-              exit 1
+              exit 0
             else
               exit 1
             fi
-      - destroy-environment
-      - revert-migrations
+     # - destroy-environment
+     # - revert-migrations
 
   deploy-backend:
 
@@ -369,6 +369,23 @@ jobs:
         #- destroy-environment
        # - revert-migrations
        
+  cloudfront-update:
+    docker:
+        - image: amazon/aws-cli
+    steps:
+        - checkout
+        - run:
+            command: |
+              yum -y install tar gzip
+        - run:
+            name: Install dependencies
+            command: |
+              yum -y install tar gzip
+        - run:
+            name: Update cloudfront distribution
+            command: |
+              aws cloudformation deploy  --template-file .circleci/files/cloudfront.yml --stack-name InitialStack --parameter-overrides WorkflowID="udapeople-${CIRCLE_WORKFLOW_ID:0:7}" --tags project=udapeople
+        # Here's where you will add some code to rollback on failure  
 
 
 workflows:
@@ -387,7 +404,6 @@ workflows:
           requires: [build-backend]
       - deploy-infrastructure
 
-      
       - configure-infrastructure:
           requires: [deploy-infrastructure]
       - run-migrations:
@@ -396,10 +412,9 @@ workflows:
       - deploy-frontend:
           requires:  [run-migrations]
            
-           
       - deploy-backend:
-     
           requires:    [run-migrations]
+
       - smoke-test-frontend:
           requires: [deploy-frontend] 
       
