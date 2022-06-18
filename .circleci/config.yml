@@ -385,7 +385,7 @@ jobs:
          
             name: Fetch and save the old pipeline ID (bucket name) responsible for the last release.
             command: |
-              export OldWorkflowID=$(aws cloudfromation
+              export OldWorkflowID=$(aws cloudformation
               list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
               --no-paginate --output text)
               echo OldWorkflowID >> ~/textfile.txt
