@@ -393,7 +393,7 @@ jobs:
               echo OldWorkflowID="${OldWorkflowID}"
               echo current workflow id : ${currentworkflowid}
 
-        # Here's where you will add some code to rollback on failure  1
+        # Here's where you will add some code to rollback on failure  
         - destroy-environment
         - revert-migrations
 
