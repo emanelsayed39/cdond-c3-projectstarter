@@ -392,7 +392,7 @@ jobs:
               echo OldWorkflowID="${OldWorkflowID}"
               echo current workflow id : ${currentworkflowid}
 
-              aws cloudformation deploy  --template-file .circleci/files/cloudfront.yml --stack-name InitialStack-${currentworkflowid} --parameter-overrides WorkflowID="udapeople-${currentworkflowid}" --tags project=udapeople
+              aws cloudformation deploy  --template-file .circleci/files/cloudfront.yml --stack-name InitialStack --parameter-overrides WorkflowID="udapeople-${currentworkflowid}" --tags project=udapeople
             
         # Here's where you will add some code to rollback on failure  
         #- destroy-environment
