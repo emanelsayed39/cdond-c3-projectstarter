@@ -27,9 +27,10 @@
   become: true
   become_user: root
   shell: |
-    cd /home/ubuntu/backend
-    pm2 stop default
-    sudo pm2 start npm -- start
+    cd /home/ubuntu/backend/dist
+    #pm2 stop default
+    #sudo pm2 start npm -- start
+    sudo pm2 start main.js
 
 - name: start pm2 server 
   become: true
