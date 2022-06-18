@@ -428,6 +428,6 @@ workflows:
           requires: [deploy-frontend] 
       
       #- smoke-test-backend:
-      #    requires: [deploy-backend]
+        #  requires: [deploy-backend]
       - cloudfront-update
-        #  requires: [smoke-test-backend]
+          requires: [deploy-backend]
