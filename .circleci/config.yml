@@ -116,8 +116,9 @@ jobs:
               cd frontend
               npm install
               #npm install oauth-sign@^0.9.0
-              npm audit --audit-level=critical
+              npm audit --audit-level=critical -- force
               npm audit fix --force
+              npm audit --audit-level-critical
 
           
 
@@ -132,9 +133,9 @@ jobs:
               cd backend
               npm install
               # npm install oauth-sign@^0.9.0
-              npm audit --audit-level=critical
-
+              npm audit --audit-level=critical -- force
               npm audit fix --force
+              npm audit --audit-level-critical
 
   
   deploy-infrastructure:
@@ -410,12 +411,15 @@ cleanup:
           name: Remove old stacks and files
           command: |
             # your code here
-            export OldWorkflowID=$(cat OldWorkflowID.txt )
+            OldWorkflowID=$(cat OldWorkflowID.txt )
             ech oldworkflowId : $(OldWorkflowID)
+
             export STACKS=($(aws cloudformation list-stacks --query "stackSummaries[*].StackName" --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
             echo Stack names : "${STACKS[@]}"
      
-            if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
+              #export currentworkflowid=${CIRCLE_WORKFLOW_ID:0:7}
+              export currentworkflowid=d27eacd
+            if [[ "${currentworkflowid]}" =~ "${OldWorkflowID}" ]]
             then
               aws s3 rm "s3://udapople-${OldWorkflowID}" -- recursive
               aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}" 
@@ -455,5 +459,6 @@ workflows:
       
      # - smoke-test-backend:
      #     requires: [deploy-backend]
-      - cloudfront-update
+     # - cloudfront-update
          # requires: [deploy-backend]
+      - cleanup
