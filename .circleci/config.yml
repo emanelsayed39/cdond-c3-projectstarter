@@ -408,6 +408,10 @@ jobs:
       - attach_workspace:
             at: ~/
       - run:
+            name: install dependinces
+            command: |
+              yum -y install tar gzip 
+      - run:
           name: Remove old stacks and files
           command: |
             # your code here
