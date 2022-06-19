@@ -417,7 +417,8 @@ jobs:
           name: Remove old stacks and files
           command: |
             # your code here
-            OldWorkflowID=$(cat OldWorkflowID.txt )
+            cat ~/OldWorkflowID.txt
+            OldWorkflowID=$(cat ~/OldWorkflowID.txt)
             ech oldworkflowId : $(OldWorkflowID)
 
             export STACKS=($(aws cloudformation list-stacks --query "stackSummaries[*].StackName" --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
