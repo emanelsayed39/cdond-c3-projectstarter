@@ -55,9 +55,7 @@ jobs:
   build-frontend:
     docker:
       - image: circleci/node:13.8.0
-    branches:
-      only:
-        -dev_branch
+   
     steps:
       - checkout
       - restore_cache:
