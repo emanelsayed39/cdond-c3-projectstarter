@@ -480,25 +480,25 @@ workflows:
           filters:
             branches:
               only: [dev_branch]
-      - deploy-infrastructure
+     # - deploy-infrastructure
 
-      - configure-infrastructure:
-          requires: [deploy-infrastructure]
-      - run-migrations:
-          requires: [configure-infrastructure]
+     # - configure-infrastructure:
+       #   requires: [deploy-infrastructure]
+      #- run-migrations:
+       #   requires: [configure-infrastructure]
      
-      - deploy-frontend:
-          requires:  [run-migrations]
+      #- deploy-frontend:
+       #   requires:  [run-migrations]
            
-      - deploy-backend:
-          requires:    [run-migrations]
+     # - deploy-backend:
+      #    requires:    [run-migrations]
 
       - smoke-test-frontend:
           requires: [deploy-frontend] 
       
       - smoke-test-backend:
           requires: [deploy-backend]
-      - cloudfront-update:
-          requires: [deploy-backend]
-      - cleanup:
-          requires: [cloudfront-update]
+     # - cloudfront-update:
+       #   requires: [deploy-backend]
+      #- cleanup:
+        #  requires: [cloudfront-update]
