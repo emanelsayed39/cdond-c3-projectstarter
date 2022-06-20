@@ -388,8 +388,8 @@ jobs:
         - run:
             name: change the cloudfront distribution
             command: |
-              #export currentworkflowid=${CIRCLE_WORKFLOW_ID:0:7}
-              export currentworkflowid=d27eacd
+              export currentworkflowid=${CIRCLE_WORKFLOW_ID:0:7}
+              #export currentworkflowid=d27eacd
               echo current workflow id : ${currentworkflowid}
 
               aws cloudformation deploy  --template-file .circleci/files/cloudfront.yml --stack-name InitialStack --parameter-overrides WorkflowID="udapeople-${currentworkflowid}" --tags project=udapeople
