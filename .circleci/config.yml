@@ -437,9 +437,9 @@ workflows:
   default:
     jobs:
       - build-frontend:
-          filters:
-            branches:
-              only:[dev_branch]
+        filters:
+          branches:
+            only: [dev_branch]
 
       - build-backend
       - test-frontend:
