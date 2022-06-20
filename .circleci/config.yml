@@ -114,8 +114,7 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - restore_cash:
-          keys: [frontend-depnd]
+      
       - run:
           name: front-end scan
           command: |
