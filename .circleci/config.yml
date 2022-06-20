@@ -426,7 +426,7 @@ jobs:
      
             #export currentworkflowid=${CIRCLE_WORKFLOW_ID:0:7}
             currentworkflowid=70c7c49
-            echo ${currentworkflowid]}
+            echo currentworkflowid: ${currentworkflowid]}
             if [[ "${currentworkflowid]}" =~ "${cat ~/OldWorkflowID.txt}" ]]
             then
               aws s3 rm "s3://udapople-${OldWorkflowID}" -- recursive
