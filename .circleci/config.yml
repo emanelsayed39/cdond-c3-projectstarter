@@ -429,7 +429,7 @@ jobs:
                
      
       - run:
-          name: Remove old stacks and files 1
+          name: Remove old stacks and files 
           command: |
             # your code here
             cat ~/OldWorkflowID.txt
