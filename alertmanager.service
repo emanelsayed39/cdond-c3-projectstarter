@@ -1,0 +1,67 @@
+codewizardly.comv3.1.0
+Menu
+Home
+About
+Contact
+Feed
+Search
+ July 1, 2020  4 min to read
+
+Prometheus Alertmanager Sending Emails
+Featured image
+Let’s recap, we have a Prometheus instance on an AWS EC2 instance configured to discover services on port 9100 in the same network and one Node Exporter instance collecting OS metrics that can be easily upgraded to many Node Exporter instances as desired.
+
+Follow the whole history:
+
+Install Prometheus on AWS EC2
+Prometheus Node Exporter on AWS EC2
+Prometheus Discovery Service on AWS EC2
+Prometheus Alertmanager Sending Emails
+But we are not done yet, we don’t want to be monitoring by ourselves. Prometheus can send us an alert to an email when it finds something. Let’s configure some rules and Prometheus Alertmanager with a Gmail account to accomplish this.
+
+“The Alertmanager handles alerts sent by client applications such as the Prometheus server. It takes care of deduplicating, grouping, and routing them to the correct receiver integrations such as email, PagerDuty, or OpsGenie. It also takes care of silencing and inhibition of alerts.” Read more.
+
+Install Alertmanager
+Login in the Prometheus instance. Don’t forget to replace this line with your configuration.
+ssh -i prometheus.pem ubuntu@ec2-3-17-28.53.us-east-2.compute.amazonaws.com
+Install Alertmanager.
+wget https://github.com/prometheus/alertmanager/releases/download/v0.21.0/alertmanager-0.21.0.linux-amd64.tar.gz
+tar xvfz alertmanager-0.21.0.linux-amd64.tar.gz
+
+sudo cp alertmanager-0.21.0.linux-amd64/alertmanager /usr/local/bin
+sudo cp alertmanager-0.21.0.linux-amd64/amtool /usr/local/bin/
+sudo mkdir /var/lib/alertmanager
+
+rm -rf alertmanager*
+Add Alertmanager’s configuration /etc/prometheus/alertmanager.yml.
+route:
+  group_by: [Alertname]
+  receiver: email-me
+
+receivers:
+- name: email-me
+  email_configs:
+  - to: EMAIL_YO_WANT_TO_SEND_EMAILS_TO
+    from: YOUR_EMAIL_ADDRESS
+    smarthost: smtp.gmail.com:587
+    auth_username: YOUR_EMAIL_ADDRESS
+    auth_identity: YOUR_EMAIL_ADDRESS
+    auth_password: YOUR_EMAIL_PASSWORD
+Configure Alertmanager as a service. /etc/systemd/system/alertmanager.service
+[Unit]
+Description=Alert Manager
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=prometheus
+Group=prometheus
+ExecStart=/usr/local/bin/alertmanager \
+  --config.file=/etc/prometheus/alertmanager.yml \
+  --storage.path=/var/lib/alertmanager
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
