@@ -15,7 +15,7 @@
   become: true
   become_user: root
   shell: |
-    cd backend 
+    cd ba/home/ubuntu/backend 
     #curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
     #sudo apt install -y nodejs
     sudo npm install
@@ -23,14 +23,14 @@
    
 
 
-- name: start service 1
+- name: start service 
   become: true
   become_user: root
   shell: |
-    cd /home/ubuntu/backend/dist
-    #pm2 stop default
+    cd /home/ubuntu/backend
+    pm2 stop default
     #sudo pm2 start npm -- start
-    sudo pm2 start npm -- start
+    pm2 start npm -- start
 
 - name: start pm2 server 
   become: true
