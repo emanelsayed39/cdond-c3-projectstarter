@@ -101,7 +101,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: front-end test
+          name: back-end test
           command: |
             cd backend
             npm install
@@ -467,7 +467,7 @@ workflows:
       
       - smoke-test-backend:
           requires: [deploy-backend]
-      - cloudfront-update:
-          requires: [deploy-backend]
-      - cleanup:
-          requires: [cloudfront-update]
+     # - cloudfront-update:
+      #    requires: [deploy-backend]
+     # - cleanup:
+      #    requires: [cloudfront-update]
