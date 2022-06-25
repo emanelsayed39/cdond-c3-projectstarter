@@ -332,9 +332,9 @@ jobs:
       - run:
           name: Deploy backend 
           command: | 
-                TYPEORM_MIGRATIONS_DIR=./src/migrations
-                TYPEORM_ENTITIES=./src/modules/domain/**/*.entity.ts
-                TYPEORM_MIGRATIONS=./src/migrations/*.ts        
+                #TYPEORM_MIGRATIONS_DIR=./src/migrations
+                #TYPEORM_ENTITIES=./src/modules/domain/**/*.entity.ts
+                #TYPEORM_MIGRATIONS=./src/migrations/*.ts        
                 cd .circleci/ansible
                 echo "Contents  of the inventory file is -------"
                 cat inventory
