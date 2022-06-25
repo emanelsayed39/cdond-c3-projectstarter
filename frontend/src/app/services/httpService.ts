@@ -12,11 +12,12 @@ export namespace HttpService {
 export class HttpService {
   public async get(url: string, options?: HttpService.Options) {
     let newUrl = url;
-
+    console.log(url);
     if (options && options.params) {
       const queryParams = this.getQueryStringFromParams(options.params);
       newUrl = newUrl + queryParams;
     }
+    console.log(newUrl);
     const response = await fetch(newUrl, {});
     switch (response.status) {
       case 500:
@@ -28,6 +29,7 @@ export class HttpService {
   }
 
   public async post(url: string, data: any) {
+    console.log(Url);
     const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
