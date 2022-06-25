@@ -19,7 +19,7 @@
     #curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
     #sudo apt install -y nodejs
     sudo npm install
-    #sudo npm run build
+    sudo npm run build
    
 
 
@@ -30,7 +30,7 @@
     cd /home/ubuntu/backend
     #pm2 stop default
     #sudo pm2 start npm -- start
-    sudo pm2 start npm -- start
+    #sudo pm2 start npm -- start
 
 - name: start pm2 server 
   become: true
