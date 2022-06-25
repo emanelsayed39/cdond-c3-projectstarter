@@ -29,7 +29,7 @@ export class HttpService {
   }
 
   public async post(url: string, data: any) {
-    console.log(Url);
+    console.log(url);
     const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
