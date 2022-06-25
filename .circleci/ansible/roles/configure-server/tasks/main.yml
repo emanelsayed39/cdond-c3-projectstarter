@@ -36,5 +36,5 @@
   npm:
     name: pm2
     global: yes
-    production: yes
+    production: yesc
     state: present
