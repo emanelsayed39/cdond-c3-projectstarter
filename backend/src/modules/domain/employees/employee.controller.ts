@@ -45,8 +45,10 @@ export class EmployeeController {
 
   @Post()
   async createEmployee(
+
     @Body() employeeRequest: CreateEmployeeRequest,
   ): Promise<Employee> {
+    console.log(employeeRequest);
     const employee = await this.employeeRepository.findByNames(
       employeeRequest.firstName,
       employeeRequest.middleName,
